@@ -11,19 +11,19 @@ import java.util.List;
 @RestController
 public class Oblig3Controller {
     @Autowired
-    private Oblig3Repository billetterRepository;
+    private Oblig3Repository rep;
     private final List<Oblig3> alleKunder=new ArrayList<>();
 
     @PostMapping("/lagre")
     public void lagreOblig3(Oblig3 innOblig3){
-        billetterRepository.lagreOblig3(innOblig3);
+        rep.lagreOblig3(innOblig3);
     }
     @GetMapping("/hentAlle")
     public List<Oblig3> hentAlle(){
-        return billetterRepository.hentAlleBilletter();
+        return rep.hentAlleBilletter();
     }
     @GetMapping("/nullstill")
     public void nullstill(){
-        billetterRepository.slettAlleBillettene();
+        rep.slettAlleBillettene();
     }
 }
