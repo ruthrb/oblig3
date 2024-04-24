@@ -1,67 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <head>
     <meta charset="UTF-8">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <style>
-        *{font-family: sans-serif;}
-        body{margin-left: 10%}
-        select, input{
-            display: block;
-            margin-bottom: 10px;
-        }
-        .invalid{
-            display: none;
-            text-decoration-color: red;
-        }
-        #showTable{display:none;}
-    </style>
-    <title>Oblig 3</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="oblig3.js"></script>
-
 </head>
 <body>
-<main>
-    <h1>Bestilling av kinobilletter</h1>
-    <label for="selectFilm">Film</label>
-    <span id="invalid-feedback-Film" class="invalid">Du er nødt til å velge en film</span>
-    <select name="dropFilm" id="selectFilm">
-        <option selected disabled value="Default">Velg film her</option>
-        <option value="1">All of us Strangers</option>
-        <option value="2">Dream Scenario</option>
-        <option value="3">Perfect Days</option>
-        <option value="4">Poor Things</option>
+<div
+    style="margin: 60px 50px; border: solid;padding: 80px">
+    <header class="Header " data-raectid="4">
+        <div class="container" data-raectid="5"></div>
+    </header>
+
+<h1>Bestilling av kinobilletter</h1>
+
+    <label for="velgFilm">Film</label>
+    <select id="velgFilm">
+        <option value=""> Velg film her</option>
+        <option value="All of us Strangers">All of us Strangers</option>
+        <option value="Dream Scenario">Dream Scenario</option>
+        <option value="Perfect Days">Perfect Days</option>
+        <option value="Poor Things">Poor Things</option>
     </select>
+    <label id="err0" style="color: red"></label>
+<br>
+<br>
 
-    <label for="inputAntall">Antall billetter</label>
-    <input type="number" min="1" step="1" id="inputAntall">
-    <span id="invalid-feedback-Antall" class="invalid">Du er nødt til å velge antall billetter</span>
 
-    <label for="inputFornavn">Fornavn</label>
-    <input autocomplete="given-name" id="inputFornavn">
-    <span id="invalid-feedback-Fornavn" class="invalid">Fyll inn fornavn</span>
+    <label for="Antall">Antall billetter</label>
+    <td><input type="number" min="1" style="width: 50px" step="1" id="Antall">
+    <label id="err1" style="color: red;"></label></td>
+<br>
+<br>
+<table>
+    <tr>
+    <td><label for="Fornavn">Fornavn</label></td>
+    <td><input type="text" placeholder="Fyll inn fornavnet ditt" id="Fornavn"></td>
+    <td><label id="err2" style="color: red;"></label></td>
+    </tr>
 
-    <label for="inputEtternavn">Etternavn</label>
-    <input autocomplete="family-name" id="inputEtternavn">
-    <span id="invalid-feedback-Etternavn" class="invalid">Fyll inn etternavn</span>
+    <br>
+    <br>
 
-    <label for="inputTelefonNr">TelefonNr</label>
-    <input type="telefon" autocomplete="telefon" id="inputTelefonNr">
-    <span id="invalif-feedback-TelefonNr" class="invalid">Fyll inn telefonNr</span>
+    <tr>
+    <td><label for="Etternavn">Etternavn</label></td>
+    <td><input type="text" placeholder="Fyll inn etternavn" id="Etternavn"></td>
+    <td><label id="err3" style="color: red;"></label></td>
+    </tr>
 
-    <label for="inputEpost">Epost</label>
-    <input type="email" autocomplete="email" id="inputEpost">
-    <span id="invalid-feedback-Epost">Fyll inn epost adresse</span>
+    <br>
+    <br>
 
-    <button id="btnSubmit" onclick="addBestilling()">Kjøp billetter</button>
+    <tr>
+    <td><label for="TelefonNr">TelefonNr</label></td>
+    <td>><input type="telefon" placeholder="Fyll inn telefonNr" id="TelefonNr"></td>
+        <td><label id="err4" style="color: red;"></label></td>
+    </tr>
 
-    <div id="showTable">
-        <hr>
-        <h2>Dine billetter</h2>
-        <div id="dineBilletter"></div>
-        <button type="button" onclick="slettBilletter()">Slett alle billetter</button>
-    </div>
-</main>
+    <br>
+    <br>
 
+    <tr>
+    <td><label for="Epost">Epost</label></td>
+    <td><input type="email" placeholder="Fyll inn epost adresse" id="Epost"></td>
+    <td><label id="err5" style="color: red;"> </label></td>
+    </tr>
+</table>
+<br>
+<br>
+    <button class="btn btn-primary" onclick="addBestilling()">Kjøp billetter</button>
+<br>
+
+<h2>Dine billetter</h2>
+<div id="dineBilletter"></div>
+<button class="btn btn-danger" onclick="slettBestillinger()">Slett alle billetter</button>
+
+</div>
 </body>
 </html>

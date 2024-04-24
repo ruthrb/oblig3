@@ -1,53 +1,70 @@
+function feilmelding(){
+    $('err0').html("")
+    $('err1').html("")
+    $('err2').html("")
+    $('err3').html("")
+    $('err4').html("")
+    $('err5').html("")
+}
 $(document).ready(function (){
-    let showTable=$("#showTable");
+    let showTable=$("#showTable"); //?
 });
 
-function addBestilling(){
-    let film=$("#selectFilm");
-    let antall=$("#inputAntall");
-    let fornavn=$("#inputFornavn");
-    let etternavn=$("#inputEtternavn");
-    let telefonNr=$("#inputTelefonNr");
-    let epost=$("#inputEpost");
-    let Billett={};
-    let errors;
+function addBestilling() {
+    let film = $("#selectFilm");
+    let antall = $("#inputAntall");
+    let fornavn = $("#inputFornavn");
+    let etternavn = $("#inputEtternavn");
+    let telefonNr = $("#inputTelefonNr");
+    let epost = $("#inputEpost");
+    let Billett = {};
+    let errors = 0;
+    let ut = "";
 
-    function validateAndAdd(BillettInput){
+    function validateAndAdd(BillettInput, variabel) {
         validate(BillettInput);
-        Billett[navn]=BillettInput.val();
+        Billett[variabel] = BillettInput.val();
     }
-    function validate(BillettInput){
-        if (BillettInput.val()==="Default"||
-        BillettInput.val()===""||
-        BillettInput.val()===null ||
-        BillettInput.val()===0){
+
+    function validate(BillettInput) {
+        if (BillettInput.val() === "Default" ||
+            BillettInput.val() === "" ||
+            BillettInput.val() === null ||
+            BillettInput.val() === 0) {
             errors++;
-            BillettInput.next().css("display:inLine");
+            BillettInput.next().css("display: inline");
         }
     }
-    try{
-        errors=0;
-        validateAndAdd(film,"film");
-        validateAndAdd(antall,"antall");
-        validateAndAdd(fornavn,"fornavn");
-        validateAndAdd(etternavn,"etternavn");
-        validateAndAdd(telefonNr,"telefonNr");
-        validateAndAdd(epost,"epost");
-        if (errors!==0){
-            return new Error("Mangler felter");
+
+    //unødvendig?
+    try {
+        errors = 0;
+        validateAndAdd(film, "film");
+        validateAndAdd(antall, "antall");
+        validateAndAdd(fornavn, "fornavn");
+        validateAndAdd(etternavn, "etternavn");
+        validateAndAdd(telefonNr, "telefonNr");
+        validateAndAdd(epost, "epost");
+        if (errors !== 0) {
+            throw new Error("Mangler felter");
         }
-    } catch (error){
+    } catch (error) {
         console.error(error);
         return;
     }
+    ut += "<table><tr><th>Film</th><th>Antall</th><th>Fornavn</th><th>Etternavn</th><th>TelefonNr</th><th>Epost</th></tr>";
+    ut += "<tr><td>" + film + "</td><td>" + antall + "</td><td>" + fornavn + "</td><td>" + etternavn + "</td><td>" + telefonNr + "</td><td>" + epost + "</td></tr>";
+    ut += "</table>";
+
     $.ajax({
         url: "/setBillett",
         type: "POST",
         data: JSON.stringify(Billett),
         contentType: "application/json; charset=utf.8",
-        complete: function (){
+        complete: function () {
             updateBestilling();
-            const resetValue= function (BillettInput){
+            $("#selectFilm, #inputAntall, #inputFornavn, #inputEtternavn, #inputTelefonNr, #inputEpost").val("");
+           /* const resetValue = function (BillettInput) {
                 BillettInput.val("");
             }
             resetValue(film);
@@ -55,18 +72,24 @@ function addBestilling(){
             resetValue(fornavn);
             resetValue(etternavn);
             resetValue(telefonNr);
-            resetValue(epost);
+            resetValue(epost);*/
         }
-        })
-}
-function slettBestillinger(){
-    $.get("/slettBilletter", function (data){
-        console.log(data)
-    }).done(function (){
-        oppdaterBestilling()
+    });
+    $("#output").html(ut);
+
+    $.get("/addBestillinger", function () {
+    }).done(function () {
+        updateBestilling()
     })
 }
-function oppdaterBestilling(){
+
+function slettBestillinger(){
+    $.get("/slettBilletter", function (){
+    }).done(function (){
+        updateBestilling()
+    })
+}
+function updateBestilling(){
     let arrayEmpty;
     $.get("/sjekkBilletterTom", function(bool){
         arrayEmpty=bool;

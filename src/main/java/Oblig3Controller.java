@@ -14,19 +14,19 @@ public class Oblig3Controller {
 
     @PostMapping("/setBillett")
     public void setBillett(@RequestBody Oblig3 billett){
-        billetterRepository.lagreBillett(billett);
+        billetterRepository.addBestilling(billett);
     }
     @GetMapping("/fåAlleBilletter")
     public List<Oblig3> getBilletter(){
-        return billetterRepository.hentAlle();
+        return billetterRepository.hentAlleBilletter();
     }
     @GetMapping("/slettTickets")
     public void slettBilletter(){
-        billetterRepository.slettAlle();
+        billetterRepository.slettBestillinger();
     }
     @GetMapping("/sjekkBilletterTom")
     public boolean sjekkBillettTom(){
-        List<Oblig3> alleBilletter=billetterRepository.hentAlle();
+        List<Oblig3> alleBilletter=billetterRepository.hentAlleBilletter();
         return alleBilletter.isEmpty();
     }
 }
