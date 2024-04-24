@@ -8,3 +8,6 @@ Kort beskrivelse av applikasjon:
 
 Tar for seg bestilling av kinobilletter. Vet at den ikke får kjørt, men vet oppriktig ikke hva som er feil:)
 
+
+link til youtube video: https://youtu.be/aN-pC2MYZs0
+
