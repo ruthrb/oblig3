@@ -50,7 +50,7 @@ function kjop(){
     }
 }
 function hentAlle(){
-    $.get()"/hentAlle",function (data){
+    $.get("/hentAlle", function (data){
         henteData(data);
     });
 

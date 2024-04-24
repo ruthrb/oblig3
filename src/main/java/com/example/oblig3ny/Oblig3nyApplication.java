@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Oblig3nyApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(Oblig3nyApplication.class, args);
     }
 

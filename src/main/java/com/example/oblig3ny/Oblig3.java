@@ -1,13 +1,4 @@
 package com.example.oblig3ny;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-
-
 public class Oblig3 {
     private String film;
     private String antall;
