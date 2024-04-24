@@ -6,6 +6,38 @@ function feilmelding(){
     $('err4').html("")
     $('err5').html("")
 }
+
+function kjop(){
+    const kunde={
+        film: $("#selectFilm").val(),
+        antall: $("#inputAntall").val(),
+        fornavn: $("#inputFornavn").val(),
+        etternavn: $("#inputEtternavn").val(),
+        telefonNr: $("#inputTelefonNr").val(),
+        epost: $("#inputEpost").val(),
+    };
+    if (kunde.film===""||kunde.antall===""||kunde.fornavn===""||kunde.etternavn===""||kunde.telefonNr===""||kunde.epost===""){
+        if (kunde.film===""){
+            document.getElementById("err0").innerHTML="Du er nødt til å velge en film";
+        }
+        if (kunde.antall===""){
+            document.getElementById("err1").innerHTML="Velg antall";
+        }
+        if (kunde.fornavn===""){
+            document.getElementById("err2").innerHTML="Fyll inn fornavn";
+        }
+        if (kunde.etternavn===""){
+            document.getElementById("err3").innerHTML="Fyll inn etternavn";
+        }
+        if (kunde.telefonNr===""){
+            document.getElementById("err4").innerHTML="Fyll inn telefonNr";
+        }
+        if (kunde.epost===""){
+            document.getElementById("err5").innerHTML="Fyll inn epost";
+        }
+    }
+    else
+}
 $(document).ready(function (){
     let showTable=$("#showTable"); //?
 });
